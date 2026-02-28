@@ -1,0 +1,261 @@
+<!-- アーカイブ・集計 -->
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .active-tab .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 py-4 flex items-center justify-between">
+        <button
+            class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            onclick="window.history.back()">
+            <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">arrow_back</span>
+        </button>
+        <h1 class="text-lg font-bold tracking-tight text-center flex-1">アーカイブ・集計</h1>
+        <button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="document.getElementById('mobile-menu').classList.remove('hidden')">
+            <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">menu</span>
+        </button>
+    </header>
+    <main class="flex-1 overflow-y-auto pb-24">
+        <!-- Yearly Summary Section -->
+        <section class="p-4 space-y-4">
+            <h2 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">年度別合計</h2>
+            <div
+                class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 space-y-6">
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">年度選択</label>
+                    <div class="relative">
+                        <select
+                            class="w-full appearance-none bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 pr-10 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+                            <option>2025年度</option>
+                            <option>2024年度</option>
+                            <option>2023年度</option>
+                        </select>
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <span class="material-symbols-outlined text-slate-400">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-primary/10 dark:bg-primary/20 p-6 rounded-xl border border-primary/20">
+                    <p class="text-xs font-bold text-primary dark:text-primary/90 mb-1">年度累計金額</p>
+                    <p class="text-3xl font-bold text-slate-900 dark:text-white flex items-baseline gap-1">
+                        <span class="text-xl">¥</span>1,250,000
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!-- Past Records Section -->
+        <section class="p-4 space-y-4">
+            <div class="flex items-center justify-between">
+                <h2 class="text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">点検履歴</h2>
+                <span class="text-xs text-slate-400">全 128 件</span>
+            </div>
+            <div class="space-y-3">
+                <!-- Record Item 1 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-center justify-between hover:border-primary/50 transition-colors">
+                    <div class="space-y-1">
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">2025年3月15日 (土)</p>
+                        <p class="text-xl font-bold">¥42,500</p>
+                    </div>
+                    <a class="flex items-center text-primary font-medium text-sm gap-1 hover:underline" href="#">
+                        詳細表示
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+                <!-- Record Item 2 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-center justify-between hover:border-primary/50 transition-colors">
+                    <div class="space-y-1">
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">2025年3月14日 (金)</p>
+                        <p class="text-xl font-bold">¥38,200</p>
+                    </div>
+                    <a class="flex items-center text-primary font-medium text-sm gap-1 hover:underline" href="#">
+                        詳細表示
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+                <!-- Record Item 3 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-center justify-between hover:border-primary/50 transition-colors">
+                    <div class="space-y-1">
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">2025年3月13日 (木)</p>
+                        <p class="text-xl font-bold">¥51,000</p>
+                    </div>
+                    <a class="flex items-center text-primary font-medium text-sm gap-1 hover:underline" href="#">
+                        詳細表示
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+                <!-- Record Item 4 -->
+                <div
+                    class="bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 flex items-center justify-between hover:border-primary/50 transition-colors">
+                    <div class="space-y-1">
+                        <p class="text-sm font-medium text-slate-500 dark:text-slate-400">2025年3月12日 (水)</p>
+                        <p class="text-xl font-bold">¥29,800</p>
+                    </div>
+                    <a class="flex items-center text-primary font-medium text-sm gap-1 hover:underline" href="#">
+                        詳細表示
+                        <span class="material-symbols-outlined text-sm">chevron_right</span>
+                    </a>
+                </div>
+            </div>
+            <button
+                class="w-full py-3 text-slate-500 dark:text-slate-400 text-sm font-medium bg-slate-100 dark:bg-slate-800 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                もっと見る
+            </button>
+        </section>
+    </main>
+    <!-- Bottom Navigation Bar -->
+    <nav
+        class="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 pb-safe">
+        <div class="flex max-w-md mx-auto h-16">
+            <a class="flex-1 flex flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                href="input_2.html">
+                <span class="material-symbols-outlined">add_circle</span>
+                <span class="text-[10px] font-bold">入力</span>
+            </a>
+            <a class="flex-1 flex flex-col items-center justify-center gap-1 text-primary active-tab"
+                href="history.html">
+                <span class="material-symbols-outlined">history</span>
+                <span class="text-[10px] font-bold">履歴</span>
+            </a>
+            <a class="flex-1 flex flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                href="archive_summary.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-[10px] font-bold">設定</span>
+            </a>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Tab Navigation
+            const tabs = document.querySelectorAll('nav a');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    if (tab.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    tabs.forEach(t => t.classList.remove('active-tab', 'text-primary'));
+                    tabs.forEach(t => t.classList.add('text-slate-400', 'dark:text-slate-500'));
+
+                    tab.classList.add('active-tab', 'text-primary');
+                    tab.classList.remove('text-slate-400', 'dark:text-slate-500');
+                });
+            });
+
+            function renderArchiveSummary() {
+                const records = JSON.parse(localStorage.getItem('cash_audit_records') || '[]');
+                const totalSum = records.reduce((acc, r) => acc + r.total, 0);
+
+                const totalAmountEl = document.querySelector('.text-3xl.font-bold span').nextSibling;
+                if (totalAmountEl) {
+                    totalAmountEl.textContent = totalSum.toLocaleString();
+                }
+            }
+
+            renderArchiveSummary();
+
+            // Year Selector logic
+            const yearSelect = document.querySelector('select');
+            if (yearSelect) {
+                yearSelect.addEventListener('change', () => {
+                    renderArchiveSummary(); // Re-render or filter by year here if needed
+                });
+            }
+
+            // Load More Button
+            const loadMoreBtn = document.querySelector('button.w-full.py-3');
+            if (loadMoreBtn) {
+                loadMoreBtn.addEventListener('click', () => {
+                    const originalText = loadMoreBtn.innerText;
+                    loadMoreBtn.innerText = '読み込み中...';
+                    setTimeout(() => {
+                        loadMoreBtn.innerText = originalText;
+                        alert('これ以上の履歴はありません。');
+                    }, 800);
+                });
+            }
+        });
+    </script>
+
+    <!-- Hamburger Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[100]">
+        <div class="absolute inset-0 bg-black/20 backdrop-blur-sm" onclick="document.getElementById('mobile-menu').classList.add('hidden')"></div>
+        <div class="absolute top-16 right-4 w-56 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden py-2" id="mobile-menu-content">
+            <a href="input_2.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">add_box</span>
+                <span class="font-medium text-sm">入力</span>
+            </a>
+            <a href="history.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">history</span>
+                <span class="font-medium text-sm">履歴</span>
+            </a>
+            <a href="summary.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+                <span class="font-medium text-sm">集計</span>
+            </a>
+            <div class="h-px bg-slate-100 dark:bg-slate-800 my-1 mx-4"></div>
+            <a href="archive_summary.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span class="font-medium text-sm">設定・アーカイブ</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,350 @@
+<!-- 現金実査 - 履歴 -->
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>現金実査履歴</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c74e9",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .active-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-10 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 py-4">
+        <div class="flex items-center justify-between max-w-md mx-auto">
+            <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+                onclick="window.history.back()">
+                <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">arrow_back</span>
+            </button>
+            <h1 class="text-lg font-bold tracking-tight">現金実査履歴</h1>
+            <div class="flex items-center gap-1">
+                <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+                    onclick="window.location.href='archive_summary.html'">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">calendar_month</span>
+                </button>
+                <button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
+                    onclick="document.getElementById('mobile-menu').classList.remove('hidden')">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-400">menu</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="flex-1 max-w-md mx-auto w-full pb-24">
+        <!-- Search and Filter Bar -->
+        <div class="p-4 space-y-4">
+            <div class="relative group">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-primary transition-colors">search</span>
+                <input
+                    class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
+                    placeholder="日付やステータスで検索..." type="text" />
+            </div>
+            <!-- Horizontal Scroll Filters -->
+            <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                <button
+                    class="flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-full text-sm font-medium whitespace-nowrap shadow-sm shadow-primary/20">
+                    すべて
+                </button>
+                <button
+                    class="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium whitespace-nowrap hover:bg-slate-50">
+                    一致
+                    <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                </button>
+                <button
+                    class="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium whitespace-nowrap hover:bg-slate-50">
+                    不一致
+                    <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                </button>
+                <button
+                    class="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium whitespace-nowrap hover:bg-slate-50">
+                    過去30日
+                    <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
+                </button>
+            </div>
+        </div>
+        <!-- Section Title -->
+        <div class="px-4 py-2">
+            <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">過去の記録
+            </h2>
+        </div>
+        <!-- Audit Records List -->
+        <div class="px-4 space-y-3" id="records-list">
+            <!-- JS will populate past records here -->
+        </div>
+    </main>
+    <!-- Bottom Navigation Bar -->
+    <nav
+        class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 pb-safe-offset-2 pt-2 z-50">
+        <div class="flex justify-around items-center max-w-md mx-auto px-4">
+            <!-- Input Tab -->
+            <a class="flex flex-col items-center gap-1 py-1 px-3 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                href="input_2.html">
+                <span class="material-symbols-outlined">add_box</span>
+                <span class="text-[10px] font-semibold">入力</span>
+            </a>
+            <!-- Archive Tab (Active) -->
+            <a class="flex flex-col items-center gap-1 py-1 px-3 text-primary relative" href="history.html">
+                <span class="material-symbols-outlined active-icon">archive</span>
+                <span class="text-[10px] font-bold">履歴</span>
+                <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-full"></div>
+            </a>
+            <!-- Stats Tab -->
+            <a class="flex flex-col items-center gap-1 py-1 px-3 text-slate-400 dark:text-slate-500 hover:text-primary transition-colors"
+                href="summary.html">
+                <span class="material-symbols-outlined">bar_chart</span>
+                <span class="text-[10px] font-semibold">集計</span>
+            </a>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listContainer = document.getElementById('records-list');
+            const searchInput = document.querySelector('input[type="text"]');
+            const filterBtns = document.querySelectorAll('.overflow-x-auto button');
+            let currentFilter = 'すべて';
+
+
+            window.closeDeleteModal = function () {
+                document.getElementById('delete-modal').classList.add('hidden');
+            };
+
+            function loadRecords() {
+                return JSON.parse(localStorage.getItem('cash_audit_records') || '[]');
+            }
+
+            function saveRecords(records) {
+                localStorage.setItem('cash_audit_records', JSON.stringify(records));
+            }
+
+            function renderRecords() {
+                const records = loadRecords();
+                listContainer.innerHTML = '';
+                const query = searchInput.value.toLowerCase();
+
+                // Sort by date descending
+                records.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                let hasRecords = false;
+
+                records.forEach(record => {
+                    const isBalanced = record.diff === 0;
+                    const statusText = isBalanced ? '一致' : `不一致 (${record.diff > 0 ? '+' : ''}¥${record.diff.toLocaleString()})`;
+                    // Convert YYYY-MM-DD to cleaner format depending on structure
+                    const displayDate = record.date.replace(/-/g, '/');
+                    const searchStr = `${displayDate} ${statusText}`.toLowerCase();
+
+                    const matchesSearch = searchStr.includes(query);
+                    let matchesFilter = true;
+                    if (currentFilter === '一致') {
+                        matchesFilter = isBalanced;
+                    } else if (currentFilter === '不一致') {
+                        matchesFilter = !isBalanced;
+                    } else if (currentFilter === '過去30日') {
+                        const diffDays = (new Date() - new Date(record.date)) / (1000 * 60 * 60 * 24);
+                        matchesFilter = diffDays <= 30;
+                    }
+
+                    if (!matchesSearch || !matchesFilter) return;
+                    hasRecords = true;
+
+                    const iconClass = isBalanced ? 'text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30' : 'text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30';
+                    const iconName = isBalanced ? 'check_circle' : 'warning';
+                    const statusColor = isBalanced ? 'text-slate-500 dark:text-slate-400' : 'text-red-500 font-medium';
+
+                    const card = document.createElement('div');
+                    card.className = 'bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-3 transition-transform relative group';
+                    card.innerHTML = `
+                        <div class="flex items-center justify-between cursor-pointer" onclick="window.location.href='input_2.html?id=${record.id}'">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-full flex items-center justify-center ${iconClass}">
+                                    <span class="material-symbols-outlined active-icon">${iconName}</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-900 dark:text-slate-100">${displayDate}</p>
+                                    <p class="text-sm ${statusColor}">${statusText}</p>
+                                </div>
+                            </div>
+                            <div class="text-right flex items-center gap-2">
+                                <p class="font-bold text-slate-900 dark:text-slate-100">¥${record.total.toLocaleString()}</p>
+                                <span class="material-symbols-outlined text-slate-400">chevron_right</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between border-t border-slate-100 dark:border-slate-800 pt-2 mt-1">
+                            <p class="text-xs text-slate-400 italic truncate max-w-[200px]">${record.note ? `メモ: ${record.note}` : ''}</p>
+                            <button class="flex items-center gap-1 text-xs text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 px-3 py-1.5 rounded-lg transition-colors delete-btn" data-id="${record.id}">
+                                <span class="material-symbols-outlined text-[16px]">delete</span>
+                                削除
+                            </button>
+                        </div>
+                    `;
+                    listContainer.appendChild(card);
+                });
+
+                if (!hasRecords) {
+                    listContainer.innerHTML = '<p class="text-center text-slate-500 py-8 text-sm">記録が見つかりません</p>';
+                }
+
+                // Attach delete events
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation(); // prevent window location change
+                        const id = e.currentTarget.getAttribute('data-id');
+                        const modal = document.getElementById('delete-modal');
+                        modal.classList.remove('hidden');
+
+                        const confirmBtn = document.getElementById('confirm-delete-btn');
+
+                        // Clear old listeners
+                        const newConfirmBtn = confirmBtn.cloneNode(true);
+                        confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+
+                        newConfirmBtn.addEventListener('click', () => {
+                            let recs = loadRecords();
+                            recs = recs.filter(r => r.id !== id);
+                            saveRecords(recs);
+                            renderRecords();
+                            closeDeleteModal();
+                        });
+                    });
+                });
+            }
+
+            // Initialize dummy records
+            if (loadRecords().length === 0) {
+                saveRecords([
+                    { id: '1', date: '2023-10-24', total: 425000, ledger: 425000, diff: 0, note: '' },
+                    { id: '2', date: '2023-10-23', total: 389050, ledger: 390300, diff: -1250, note: '' },
+                    { id: '3', date: '2023-10-22', total: 510000, ledger: 510000, diff: 0, note: '' }
+                ]);
+            }
+
+            renderRecords();
+
+            searchInput.addEventListener('input', renderRecords);
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Reset styles
+                    filterBtns.forEach(b => {
+                        b.className = 'flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium whitespace-nowrap hover:bg-slate-50';
+                    });
+                    // Active style
+                    btn.className = 'flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-full text-sm font-medium whitespace-nowrap shadow-sm shadow-primary/20';
+                    // Dropdown icon styling if exists
+                    const icon = btn.querySelector('.material-symbols-outlined');
+                    if (icon) {
+                        filterBtns.forEach(b => {
+                            const ic = b.querySelector('.material-symbols-outlined');
+                            if (ic) ic.style.color = '';
+                        });
+                        icon.style.color = 'white';
+                    }
+
+                    currentFilter = btn.textContent.trim().split('\n')[0];
+                    renderRecords();
+                });
+            });
+        });
+    </script>
+
+    <!-- Hamburger Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[100]">
+        <div class="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            onclick="document.getElementById('mobile-menu').classList.add('hidden')"></div>
+        <div class="absolute top-16 right-4 w-56 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden py-2"
+            id="mobile-menu-content">
+            <a href="input_2.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">add_box</span>
+                <span class="font-medium text-sm">入力</span>
+            </a>
+            <a href="history.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">history</span>
+                <span class="font-medium text-sm">履歴</span>
+            </a>
+            <a href="summary.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+                <span class="font-medium text-sm">集計</span>
+            </a>
+            <div class="h-px bg-slate-100 dark:bg-slate-800 my-1 mx-4"></div>
+            <a href="archive_summary.html"
+                class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span class="font-medium text-sm">設定・アーカイブ</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Delete Confirm Modal -->
+    <div id="delete-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onclick="closeDeleteModal()">
+        </div>
+        <div
+            class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl max-w-sm w-full p-6 relative z-10 scale-100 transition-transform">
+            <div
+                class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 flex items-center justify-center mb-4 mx-auto">
+                <span class="material-symbols-outlined text-[24px]">warning</span>
+            </div>
+            <h3 class="text-lg font-bold text-center text-slate-900 dark:text-white mb-2">記録の削除</h3>
+            <p class="text-sm text-center text-slate-500 dark:text-slate-400 mb-6">この記録を削除してもよろしいですか？<br>この操作は取り消せません。
+            </p>
+            <div class="flex gap-3">
+                <button onclick="closeDeleteModal()"
+                    class="flex-1 py-3 px-4 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-xl font-bold hover:bg-slate-200 transition-colors">キャンセル</button>
+                <button id="confirm-delete-btn"
+                    class="flex-1 py-3 px-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold shadow-lg shadow-red-600/30 transition-colors">削除する</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

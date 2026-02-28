@@ -1,0 +1,299 @@
+<!-- 現金実査 - 集計 -->
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1c74e9",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111821",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <title>現金実査 - 集計</title>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+    <div
+        class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-white dark:bg-background-dark shadow-xl overflow-x-hidden">
+        <!-- Header -->
+        <div
+            class="flex items-center bg-white dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-slate-200 dark:border-slate-800">
+            <div
+                class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </div>
+            <h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">集計画面</h2>
+            <div onclick="document.getElementById('mobile-menu').classList.remove('hidden')" class="text-primary flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer">
+                <span class="material-symbols-outlined">menu</span>
+            </div>
+        </div>
+        <!-- Year Selector -->
+        <div class="flex px-4 py-4">
+            <div class="flex w-full bg-slate-100 dark:bg-slate-800 rounded-xl p-1">
+                <button
+                    class="flex-1 py-2 text-sm font-semibold rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600">
+                    2023年度
+                </button>
+                <button
+                    class="flex-1 py-2 text-sm font-bold rounded-lg bg-white dark:bg-slate-700 text-primary shadow-sm">
+                    2024年度
+                </button>
+                <button
+                    class="flex-1 py-2 text-sm font-semibold rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600">
+                    2025年度
+                </button>
+            </div>
+        </div>
+        <!-- Summary Cards -->
+        <div class="flex flex-col gap-4 p-4">
+            <div class="flex gap-4">
+                <div class="flex flex-1 flex-col gap-2 rounded-xl p-5 bg-primary/5 border border-primary/10">
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">年度総合計</p>
+                    <p class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold leading-tight">
+                        ¥12,450,000</p>
+                    <div class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-sm font-bold">
+                        <span class="material-symbols-outlined text-sm">trending_up</span>
+                        <span>+5.2%</span>
+                    </div>
+                </div>
+                <div
+                    class="flex flex-1 flex-col gap-2 rounded-xl p-5 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700">
+                    <p class="text-slate-500 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">平均月間額</p>
+                    <p class="text-slate-900 dark:text-white tracking-tight text-2xl font-bold leading-tight">¥1,037,500
+                    </p>
+                    <div class="flex items-center gap-1 text-rose-600 dark:text-rose-400 text-sm font-bold">
+                        <span class="material-symbols-outlined text-sm">trending_down</span>
+                        <span>-1.1%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chart Section -->
+        <div class="px-4 py-2">
+            <div
+                class="flex flex-col gap-4 rounded-xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-background-dark shadow-sm">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-slate-900 dark:text-white text-base font-bold">月別推移</p>
+                        <p class="text-slate-500 dark:text-slate-400 text-xs">2024/04 - 2025/03</p>
+                    </div>
+                    <span class="material-symbols-outlined text-slate-400 cursor-pointer">more_horiz</span>
+                </div>
+                <div class="flex items-baseline gap-1 mt-2">
+                    <span class="text-slate-900 dark:text-white text-3xl font-bold tracking-tight">¥1,245,000</span>
+                    <span class="text-slate-400 text-xs font-medium mb-1">(今月)</span>
+                </div>
+                <!-- Simple Bar Chart -->
+                <div class="flex items-end justify-between h-48 w-full px-2 mt-4">
+                    <div class="flex flex-col items-center gap-2 w-full">
+                        <div class="bg-slate-200 dark:bg-slate-700 w-6 rounded-t-sm hover:bg-primary/40 transition-colors"
+                            style="height: 60%;"></div>
+                        <p class="text-slate-400 text-[10px] font-bold">4月</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 w-full">
+                        <div class="bg-slate-200 dark:bg-slate-700 w-6 rounded-t-sm hover:bg-primary/40 transition-colors"
+                            style="height: 85%;"></div>
+                        <p class="text-slate-400 text-[10px] font-bold">5月</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 w-full">
+                        <div class="bg-slate-200 dark:bg-slate-700 w-6 rounded-t-sm hover:bg-primary/40 transition-colors"
+                            style="height: 45%;"></div>
+                        <p class="text-slate-400 text-[10px] font-bold">6月</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 w-full">
+                        <div class="bg-slate-200 dark:bg-slate-700 w-6 rounded-t-sm hover:bg-primary/40 transition-colors"
+                            style="height: 75%;"></div>
+                        <p class="text-slate-400 text-[10px] font-bold">7月</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 w-full">
+                        <div class="bg-slate-200 dark:bg-slate-700 w-6 rounded-t-sm hover:bg-primary/40 transition-colors"
+                            style="height: 55%;"></div>
+                        <p class="text-slate-400 text-[10px] font-bold">8月</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 w-full">
+                        <div class="bg-primary w-6 rounded-t-sm" style="height: 95%;"></div>
+                        <p class="text-primary text-[10px] font-bold">9月</p>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 w-full">
+                        <div class="bg-slate-100 dark:bg-slate-800 w-6 rounded-t-sm border-t border-dashed border-slate-300"
+                            style="height: 40%;"></div>
+                        <p class="text-slate-300 text-[10px] font-bold">10月</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Secondary Breakdown List -->
+        <div class="p-4 mt-2">
+            <h3 class="text-slate-900 dark:text-white text-sm font-bold mb-3 px-1">カテゴリー別構成</h3>
+            <div class="space-y-3">
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/30">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-8 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600">
+                            <span class="material-symbols-outlined text-lg">payments</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold">現金売上</p>
+                            <p class="text-[10px] text-slate-500">全体の 65%</p>
+                        </div>
+                    </div>
+                    <p class="font-bold text-sm">¥8,092,500</p>
+                </div>
+                <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-800/30">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="size-8 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600">
+                            <span class="material-symbols-outlined text-lg">account_balance_wallet</span>
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold">経費精算</p>
+                            <p class="text-[10px] text-slate-500">全体の 20%</p>
+                        </div>
+                    </div>
+                    <p class="font-bold text-sm">¥2,490,000</p>
+                </div>
+            </div>
+        </div>
+        <!-- Spacer for scrolling -->
+        <div class="h-24"></div>
+        <!-- Bottom Navigation -->
+        <div
+            class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white dark:bg-background-dark border-t border-slate-200 dark:border-slate-800 px-6 pb-6 pt-3 flex justify-between items-center z-50">
+            <a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="input_2.html">
+                <span class="material-symbols-outlined">add_circle</span>
+                <span class="text-[10px] font-bold">入力</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="history.html">
+                <span class="material-symbols-outlined">history</span>
+                <span class="text-[10px] font-bold">履歴</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-primary" href="summary.html">
+                <div class="relative">
+                    <span class="material-symbols-outlined">bar_chart</span>
+                    <div
+                        class="absolute -top-1 -right-1 size-2 bg-rose-500 rounded-full border-2 border-white dark:border-background-dark">
+                    </div>
+                </div>
+                <span class="text-[10px] font-bold">集計</span>
+            </a>
+            <a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="archive_summary.html">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="text-[10px] font-bold">設定</span>
+            </a>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation
+            const navLinks = document.querySelectorAll('.fixed.bottom-0 a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (link.getAttribute('href') === '#') {
+                        e.preventDefault();
+                    }
+                    navLinks.forEach(l => {
+                        l.classList.remove('text-primary');
+                        l.classList.add('text-slate-400');
+                        const dot = l.querySelector('.absolute');
+                        if (dot && !l.isEqualNode(link)) dot.style.display = 'none';
+                    });
+                    link.classList.add('text-primary');
+                    link.classList.remove('text-slate-400');
+                    const dot = link.querySelector('.absolute');
+                    if (dot) dot.style.display = 'block';
+                });
+            });
+
+            function renderSummary() {
+                const records = JSON.parse(localStorage.getItem('cash_audit_records') || '[]');
+                const totalSum = records.reduce((acc, r) => acc + r.total, 0);
+                const avgSum = records.length > 0 ? Math.round(totalSum / records.length) : 0;
+
+                const val1 = document.querySelectorAll('.text-2xl.font-bold')[0];
+                const val2 = document.querySelectorAll('.text-2xl.font-bold')[1];
+
+                if (val1) val1.textContent = '¥' + totalSum.toLocaleString();
+                if (val2) val2.textContent = '¥' + avgSum.toLocaleString();
+            }
+
+            renderSummary();
+
+            // Year Tabs
+            const yearBtns = document.querySelectorAll('.flex.px-4.py-4 button');
+            yearBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    yearBtns.forEach(b => {
+                        b.className = 'flex-1 py-2 text-sm font-semibold rounded-lg text-slate-400 dark:text-slate-500 hover:text-slate-600';
+                    });
+                    btn.className = 'flex-1 py-2 text-sm font-bold rounded-lg bg-white dark:bg-slate-700 text-primary shadow-sm';
+
+                    // Re-render
+                    renderSummary();
+                });
+            });
+
+            // Interactivity on charts
+            const bars = document.querySelectorAll('.h-48 > div > div:first-child');
+            bars.forEach(bar => {
+                bar.style.transition = 'height 1s cubic-bezier(0.4, 0, 0.2, 1)';
+                bar.addEventListener('mouseenter', () => { bar.style.opacity = '0.8'; });
+                bar.addEventListener('mouseleave', () => { bar.style.opacity = '1'; });
+            });
+        });
+    </script>
+
+    <!-- Hamburger Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[100]">
+        <div class="absolute inset-0 bg-black/20 backdrop-blur-sm" onclick="document.getElementById('mobile-menu').classList.add('hidden')"></div>
+        <div class="absolute top-16 right-4 w-56 bg-white dark:bg-slate-900 rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden py-2" id="mobile-menu-content">
+            <a href="input_2.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">add_box</span>
+                <span class="font-medium text-sm">入力</span>
+            </a>
+            <a href="history.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">history</span>
+                <span class="font-medium text-sm">履歴</span>
+            </a>
+            <a href="summary.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">bar_chart</span>
+                <span class="font-medium text-sm">集計</span>
+            </a>
+            <div class="h-px bg-slate-100 dark:bg-slate-800 my-1 mx-4"></div>
+            <a href="archive_summary.html" class="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span class="font-medium text-sm">設定・アーカイブ</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>
