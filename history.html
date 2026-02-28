@@ -84,28 +84,7 @@
                     class="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all shadow-sm"
                     placeholder="日付やステータスで検索..." type="text" />
             </div>
-            <!-- Horizontal Scroll Filters -->
-            <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                <button
-                    class="flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-full text-sm font-medium whitespace-nowrap shadow-sm shadow-primary/20">
-                    すべて
-                </button>
-                <button
-                    class="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium whitespace-nowrap hover:bg-slate-50">
-                    一致
-                    <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
-                </button>
-                <button
-                    class="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium whitespace-nowrap hover:bg-slate-50">
-                    不一致
-                    <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
-                </button>
-                <button
-                    class="flex items-center gap-1.5 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium whitespace-nowrap hover:bg-slate-50">
-                    過去30日
-                    <span class="material-symbols-outlined text-xs">keyboard_arrow_down</span>
-                </button>
-            </div>
+
         </div>
         <!-- Section Title -->
         <div class="px-4 py-2">
@@ -172,29 +151,15 @@
                 let hasRecords = false;
 
                 records.forEach(record => {
-                    const isBalanced = record.diff === 0;
-                    const statusText = isBalanced ? '一致' : `不一致 (${record.diff > 0 ? '+' : ''}¥${record.diff.toLocaleString()})`;
-                    // Convert YYYY-MM-DD to cleaner format depending on structure
                     const displayDate = record.date.replace(/-/g, '/');
-                    const searchStr = `${displayDate} ${statusText}`.toLowerCase();
+                    const searchStr = `${displayDate}`.toLowerCase();
 
                     const matchesSearch = searchStr.includes(query);
-                    let matchesFilter = true;
-                    if (currentFilter === '一致') {
-                        matchesFilter = isBalanced;
-                    } else if (currentFilter === '不一致') {
-                        matchesFilter = !isBalanced;
-                    } else if (currentFilter === '過去30日') {
-                        const diffDays = (new Date() - new Date(record.date)) / (1000 * 60 * 60 * 24);
-                        matchesFilter = diffDays <= 30;
-                    }
-
-                    if (!matchesSearch || !matchesFilter) return;
+                    if (!matchesSearch) return;
                     hasRecords = true;
 
-                    const iconClass = isBalanced ? 'text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30' : 'text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30';
-                    const iconName = isBalanced ? 'check_circle' : 'warning';
-                    const statusColor = isBalanced ? 'text-slate-500 dark:text-slate-400' : 'text-red-500 font-medium';
+                    const iconClass = 'text-primary bg-primary/10';
+                    const iconName = 'receipt_long';
 
                     const card = document.createElement('div');
                     card.className = 'bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-3 transition-transform relative group';
@@ -206,7 +171,6 @@
                                 </div>
                                 <div>
                                     <p class="font-bold text-slate-900 dark:text-slate-100">${displayDate}</p>
-                                    <p class="text-sm ${statusColor}">${statusText}</p>
                                 </div>
                             </div>
                             <div class="text-right flex items-center gap-2">

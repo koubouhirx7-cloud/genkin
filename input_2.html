@@ -108,7 +108,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="12" />
+                        type="number" value="0" />
                     <button
                         class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center active:scale-95 transition-transform">
                         <span class="material-symbols-outlined text-sm">add</span>
@@ -132,7 +132,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="4" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -155,7 +155,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="15" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -178,7 +178,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="8" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -201,7 +201,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="23" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -224,7 +224,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="6" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -247,7 +247,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="45" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -270,7 +270,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="12" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -293,7 +293,7 @@
                         <span class="material-symbols-outlined text-sm">remove</span>
                     </button>
                     <input class="w-12 text-center border-none bg-transparent font-bold text-lg focus:ring-0 p-0"
-                        type="number" value="38" />
+                        type="number" value="0" />
                     <button class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
                         <span class="material-symbols-outlined text-sm">add</span>
                     </button>
@@ -303,16 +303,7 @@
                 </div>
             </div>
         </div>
-        <!-- Ledger Balance Input -->
-        <div class="p-4 mt-2 border-t border-slate-100 dark:border-slate-800">
-            <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">帳簿残高</label>
-            <div class="relative">
-                <span class="absolute left-3 top-1/2 -translate-y-1/2 font-bold text-slate-500">¥</span>
-                <input type="number" id="ledger-input"
-                    class="w-full pl-8 py-3 rounded-xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/40 text-lg font-bold focus:border-primary focus:ring-primary"
-                    value="162148">
-            </div>
-        </div>
+
         <!-- Discrepancy Note Area (Optional but professional) -->
         <div class="p-4 pt-0">
             <label class="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2">過不足理由・備考</label>
@@ -326,22 +317,14 @@
         class="fixed bottom-0 left-0 right-0 z-20 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pb-safe shadow-[0_-8px_30px_rgb(0,0,0,0.04)]">
         <div class="max-w-md mx-auto p-4 space-y-4">
             <!-- Summary Stats -->
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4">
                 <div
                     class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
                     <p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
                         実査日現金合計</p>
                     <p class="text-lg font-bold">¥162,148</p>
                 </div>
-                <div
-                    class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
-                    <p class="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1">
-                        帳簿残高との差</p>
-                    <div class="flex items-center gap-1">
-                        <p class="text-lg font-bold text-emerald-500">±0</p>
-                        <span class="material-symbols-outlined text-emerald-500 text-sm">check_circle</span>
-                    </div>
-                </div>
+
             </div>
             <!-- Action Button -->
             <button
@@ -364,12 +347,7 @@
 
             const rows = document.querySelectorAll('.border-b.border-slate-50');
             const totalEl = document.querySelector('footer .text-lg.font-bold');
-            const diffEl = document.querySelectorAll('footer .text-lg.font-bold')[1];
-            const ledgerInput = document.getElementById('ledger-input');
-            let diffIcon = null;
-            if (diffEl) {
-                diffIcon = diffEl.nextElementSibling;
-            }
+
 
             let currentTotalVal = 0;
 
@@ -394,30 +372,10 @@
 
                 if (totalEl) totalEl.textContent = `¥${currentTotal.toLocaleString()}`;
 
-                const ledger = parseInt(ledgerInput.value) || 0;
-                if (diffEl) {
-                    const diff = currentTotal - ledger;
-                    if (diff === 0) {
-                        diffEl.textContent = '±0';
-                        diffEl.className = 'text-lg font-bold text-emerald-500';
-                        if (diffIcon) {
-                            diffIcon.textContent = 'check_circle';
-                            diffIcon.className = 'material-symbols-outlined text-emerald-500 text-sm';
-                        }
-                    } else {
-                        diffEl.textContent = `${diff > 0 ? '+' : ''}${diff.toLocaleString()}`;
-                        diffEl.className = 'text-lg font-bold text-rose-500';
-                        if (diffIcon) {
-                            diffIcon.textContent = 'warning';
-                            diffIcon.className = 'material-symbols-outlined text-rose-500 text-sm';
-                        }
-                    }
-                }
+
             }
 
-            if (ledgerInput) {
-                ledgerInput.addEventListener('input', update);
-            }
+
 
             rows.forEach(row => {
                 const input = row.querySelector('input[type="number"]');
@@ -444,7 +402,7 @@
 
                 if (currentRecord) {
                     if (dateInput) dateInput.value = currentRecord.date;
-                    if (ledgerInput) ledgerInput.value = currentRecord.ledger;
+
                     const noteEl = document.getElementById('audit-note');
                     if (noteEl) noteEl.value = currentRecord.note || '';
 
@@ -470,9 +428,9 @@
                 saveBtn.addEventListener('click', () => {
                     const records = JSON.parse(localStorage.getItem('cash_audit_records') || '[]');
                     const dateVal = dateInput.value;
-                    const ledgerVal = parseInt(ledgerInput.value) || 0;
+                    const ledgerVal = 0;
                     const noteStr = document.getElementById('audit-note').value;
-                    const diffVal = currentTotalVal - ledgerVal;
+                    const diffVal = 0;
 
                     const counts = {};
                     rows.forEach(row => {
